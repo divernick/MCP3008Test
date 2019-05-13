@@ -17,6 +17,7 @@
 
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
+#include "tcMCP3008.h"
 
 #define	TRUE	            (1==1)
 #define	FALSE	            (!TRUE)
@@ -39,24 +40,7 @@ void loadSpiDriver()
 	}
 }
 
-void spiSetup(int spiChannel)
-{
-	if ((myFd = wiringPiSPISetup(spiChannel, 1000000)) < 0)
-	{
-		fprintf(stderr, "Can't open the SPI bus: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
-}
 
-int myAnalogRead(int spiChannel, int channelConfig, int analogChannel)
-{
-	if (analogChannel < 0 || analogChannel>7)
-		return -1;
-	unsigned char buffer[3] = { 1 }; // start bit
-	buffer[1] = (channelConfig + analogChannel) << 4;
-	wiringPiSPIDataRW(spiChannel, buffer, 3);
-	return ((buffer[1] & 3) << 8) + buffer[2]; // get last 10 bits
-}
 
 int main(int argc, char* argv[])
 {
@@ -64,6 +48,9 @@ int main(int argc, char* argv[])
 	int analogChannel = 0;
 	int spiChannel = 0;
 	int channelConfig = CHAN_CONFIG_SINGLE;
+
+	
+
 	if (argc < 2)
 	{
 		fprintf(stderr, "%s\n", usage);
@@ -89,13 +76,13 @@ int main(int argc, char* argv[])
 	//
 	if (loadSpi == TRUE)
 		loadSpiDriver();
-	wiringPiSetup();
-	spiSetup(spiChannel);
+
+	tcMCP3008 lcADChip(spiChannel, SPI_SPEED_DEFAULT);
 	//
 	if (analogChannel > 0)
 	{
 		printf("MCP3008(CE%d,%s): analogChannel %d = %d\n", spiChannel, (channelConfig == CHAN_CONFIG_SINGLE)
-			? "single-ended" : "differential", analogChannel, myAnalogRead(spiChannel, channelConfig, analogChannel - 1));
+			? "single-ended" : "differential", analogChannel, lcADChip.ReadValue(analogChannel-1));
 	}
 	else
 	{
@@ -103,8 +90,8 @@ int main(int argc, char* argv[])
 		{
 			for (i = 0; i < 8; i++)
 			{
-				printf("MCP3008(CE%d,%s): analogChannel %d = %d%\n", spiChannel, (channelConfig == CHAN_CONFIG_SINGLE)
-					? "single-ended" : "differential", i + 1, (myAnalogRead(spiChannel, channelConfig, i)*100)/1023);
+				printf("MCP3008(CE%d,%s): analogChannel %d = %d (%d%)\n", spiChannel, (channelConfig == CHAN_CONFIG_SINGLE)
+					? "single-ended" : "differential", i + 1, lcADChip.ReadValue(i),lcADChip.ReadValuePercent(i));
 			}
 			delay(500);
 		} while (true);

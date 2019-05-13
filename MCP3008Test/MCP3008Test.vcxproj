@@ -72,8 +72,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tcMCP3008.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tcMCP3008.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
