@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MCP3008Test", "MCP3008Test\MCP3008Test.vcxproj", "{C91AACF7-B8F4-4564-9042-2D4E892E2677}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Debug|ARM.Build.0 = Debug|ARM
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Debug|ARM64.Build.0 = Debug|ARM64
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Release|ARM.ActiveCfg = Release|ARM
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Release|ARM.Build.0 = Release|ARM
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Release|ARM64.ActiveCfg = Release|ARM64
+		{C91AACF7-B8F4-4564-9042-2D4E892E2677}.Release|ARM64.Build.0 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {222A31EC-5DAD-4C7E-A3D9-A3EE4C36AAB9}
+	EndGlobalSection
+EndGlobal
