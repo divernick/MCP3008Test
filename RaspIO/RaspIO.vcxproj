@@ -79,10 +79,18 @@
   <ItemGroup>
     <ClCompile Include="..\MCP3008Test\tcMCP3008.cpp" />
     <ClCompile Include="..\MCP3008Test\tcSPI.cpp" />
+    <ClCompile Include="tcGPIO.cpp" />
+    <ClCompile Include="tcLED.cpp" />
+    <ClCompile Include="tcRelay.cpp" />
+    <ClCompile Include="txRaspIOException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MCP3008Test\tcMCP3008.h" />
     <ClInclude Include="..\MCP3008Test\tcSPI.h" />
+    <ClInclude Include="tcGPIO.h" />
+    <ClInclude Include="tcLED.h" />
+    <ClInclude Include="tcRelay.h" />
+    <ClInclude Include="txRaspIOException.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
