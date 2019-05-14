@@ -1,8 +1,6 @@
 #include "tcMCP3008.h"
 
 
-
- 
 tcMCP3008::tcMCP3008() :
 	tcSPI(0, SPI_SPEED_DEFAULT){}
 
@@ -23,7 +21,7 @@ int tcMCP3008::ReadValue(const int asChannel)
 int tcMCP3008::ReadValuePercent(const int asChannel)
 {
 	int lsResult = AnalogRead(asChannel);
-	return (lsResult * 100) / 1023;
+	return (lsResult*100) / 1023;
 }
 
 int tcMCP3008::AnalogRead(const int asChannel)

@@ -1,7 +1,11 @@
 #pragma once
 /**
+* \class tcMCP3008
+* \brief Derivative class to interface with the MCP3008 AtoD Chip
+*
 * Class that wraps functionality of the MCP3008 Analog to Digital chip.  
-* This class leverages the WiringPi library standardard on a Raspberry PI
+* Derived from the tcSPI class wrappers for http://wiringpi.com
+*
 **/
 #include "tcSPI.h"
 

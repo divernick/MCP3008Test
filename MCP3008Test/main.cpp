@@ -9,6 +9,7 @@
 #define _GNU_SOURCE
 
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdint.h>
@@ -78,11 +79,13 @@ int main(int argc, char* argv[])
 		loadSpiDriver();
 
 	tcMCP3008 lcADChip(spiChannel);
-	//
+	
 	if (analogChannel > 0)
 	{
-		printf("MCP3008(CE%d,%s): analogChannel %d = %d\n", spiChannel, (channelConfig == CHAN_CONFIG_SINGLE)
-			? "single-ended" : "differential", analogChannel, lcADChip.ReadValue(analogChannel-1));
+		std::cout << "MCP3008(CE" << spiChannel << "): analogChannel " << analogChannel << " = " 
+			<< lcADChip.ReadValue(analogChannel - 1) 
+			<< "(" << lcADChip.ReadValuePercent(analogChannel -1) << ")" 
+			<< std::endl;
 	}
 	else
 	{
@@ -90,8 +93,10 @@ int main(int argc, char* argv[])
 		{
 			for (i = 0; i < 8; i++)
 			{
-				printf("MCP3008(CE%d,%s): analogChannel %d = %d (%d%)\n", spiChannel, (channelConfig == CHAN_CONFIG_SINGLE)
-					? "single-ended" : "differential", i + 1, lcADChip.ReadValue(i),lcADChip.ReadValuePercent(i));
+				std::cout << "MCP3008(CE" << spiChannel << "): analogChannel " << i + 1 << " = "
+					<< lcADChip.ReadValue(i)
+					<< "(" << lcADChip.ReadValuePercent(i) << ")"
+					<< std::endl;
 			}
 			delay(500);
 		} while (true);

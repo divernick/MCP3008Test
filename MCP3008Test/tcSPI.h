@@ -1,7 +1,11 @@
 #pragma once
 /**
-* Class that wraps functionality of SPI GPIO functionality.
+* \class tcSPI 
+* \brief Class that wraps functionality of SPI GPIO functionality.
+*
 * This class leverages the WiringPi library standardard on a Raspberry PI
+* http://wiringpi.com
+*
 **/
 
 #define SPI_SPEED_DEFAULT 1000000
