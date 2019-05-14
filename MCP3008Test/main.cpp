@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 	if (loadSpi == TRUE)
 		loadSpiDriver();
 
-	tcMCP3008 lcADChip(spiChannel, SPI_SPEED_DEFAULT);
+	tcMCP3008 lcADChip(spiChannel);
 	//
 	if (analogChannel > 0)
 	{

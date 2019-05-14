@@ -1,14 +1,26 @@
 #pragma once
+/**
+* Class that wraps functionality of the MCP3008 Analog to Digital chip.  
+* This class leverages the WiringPi library standardard on a Raspberry PI
+**/
+#include "tcSPI.h"
 
-
-
-#define SPI_SPEED_DEFAULT 1000000
-
-class tcMCP3008
+class tcMCP3008 : public tcSPI
 {
 public:
+	/** 
+	* Standard Contstructur.  
+	* Defaults to interfacing with SPI Channel 0, if the MCP3008 is connected with SPI channel 1 then you need to use the other constructure
+	**/
 	tcMCP3008();   //defaults to SPI Channel 0
-	tcMCP3008(const int asSPIChannel, const int asSPISpeed);
+
+	/**
+	* Constructur that accepts defining which SPI Channel and SPI Speed to use.
+	*
+	* @param asSPIChannel - references the SPI channel the MCP3008 is connected to (0 or 1)
+	* @param asSPISpeed - speed in Hz.  500,000 - 32,000,000 Hz
+	**/
+	tcMCP3008(const int asSPIChannel, const int asSPISpeed = SPI_SPEED_DEFAULT);
 	virtual ~tcMCP3008();
 
 	/** 
@@ -28,14 +40,7 @@ public:
 	**/
 	int ReadValuePercent(const int asChannel);
 
-
-private:	//methods
+private:  //methods
 	int AnalogRead(const int asChannel);
-
-
-private:	//members
-	int mdFileDesc;
-	int msSPIChannel;
-	int msSPISPeed;
 };
 
