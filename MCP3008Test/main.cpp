@@ -6,7 +6,6 @@
  * Copyright (c) 2015 http://shaunsbennett.com/piblog
  ***********************************************************************
  */
-#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <iostream>
@@ -26,6 +25,8 @@
 #define CHAN_CONFIG_DIFF    0
 
 static int myFd;
+
+using namespace RaspIO;
 
 char* usage = "Usage: mcp3008 all|analogChannel[1-8] [-l] [-ce1] [-d]";
 // -l   = load SPI driver,  default: do not load
@@ -48,8 +49,6 @@ int main(int argc, char* argv[])
 	int loadSpi = FALSE;
 	int analogChannel = 0;
 	int spiChannel = 0;
-	int channelConfig = CHAN_CONFIG_SINGLE;
-
 	
 
 	if (argc < 2)
@@ -71,14 +70,12 @@ int main(int argc, char* argv[])
 			loadSpi = TRUE;
 		else if (strcasecmp(argv[i], "-ce1") == 0)
 			spiChannel = 1;
-		else if (strcasecmp(argv[i], "-d") == 0 || strcasecmp(argv[i], "-diff") == 0)
-			channelConfig = CHAN_CONFIG_DIFF;
 	}
 	//
 	if (loadSpi == TRUE)
 		loadSpiDriver();
 
-	tcMCP3008 lcADChip(spiChannel);
+	RaspIO::tcMCP3008 lcADChip(spiChannel);
 	
 	if (analogChannel > 0)
 	{

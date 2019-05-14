@@ -9,15 +9,15 @@
 #include <wiringPiSPI.h>
 
 #define SPI_SPEED_DEFAULT 1000000
+using namespace RaspIO;
 
-
-tcSPI::tcSPI()
+RaspIO::tcSPI::tcSPI()
 {
 	tcSPI(0, SPI_SPEED_DEFAULT);
 }
 
 
-tcSPI::tcSPI(const int asSPIChannel, const int asSPISpeed)
+RaspIO::tcSPI::tcSPI(const int asSPIChannel, const int asSPISpeed)
 {
 	msSPIChannel = asSPIChannel;
 	msSPISPeed = asSPISpeed;
@@ -31,22 +31,22 @@ tcSPI::tcSPI(const int asSPIChannel, const int asSPISpeed)
 	}
 }
 
-tcSPI::~tcSPI()
+RaspIO::tcSPI::~tcSPI()
 {
 	close(mdFileDesc);
 }
 
-int tcSPI::GetSPIChannel(void)
+int RaspIO::tcSPI::GetSPIChannel(void)
 {
 	return msSPIChannel;
 }
 
-int tcSPI::GetSPISpeed(void)
+int RaspIO::tcSPI::GetSPISpeed(void)
 {
 	return msSPISPeed;
 }
 
-int tcSPI::AnalogSPIRead(unsigned char* buffer, int len)
+int RaspIO::tcSPI::AnalogSPIRead(unsigned char* buffer, int len)
 {
 	return wiringPiSPIDataRW(msSPIChannel, buffer, len);
 }

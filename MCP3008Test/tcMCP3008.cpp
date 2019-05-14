@@ -1,30 +1,31 @@
 #include "tcMCP3008.h"
 
+using namespace RaspIO;
 
-tcMCP3008::tcMCP3008() :
+RaspIO::tcMCP3008::tcMCP3008() :
 	tcSPI(0, SPI_SPEED_DEFAULT){}
 
-tcMCP3008::tcMCP3008(const int asSPIChannel,const int asSPISpeed) :
+RaspIO::tcMCP3008::tcMCP3008(const int asSPIChannel,const int asSPISpeed) :
 	tcSPI(asSPIChannel,asSPISpeed){}
 
 
-tcMCP3008::~tcMCP3008()
+RaspIO::tcMCP3008::~tcMCP3008()
 {
 
 }
 
-int tcMCP3008::ReadValue(const int asChannel)
+int RaspIO::tcMCP3008::ReadValue(const int asChannel)
 {
 	return AnalogRead(asChannel);
 }
 
-int tcMCP3008::ReadValuePercent(const int asChannel)
+int RaspIO::tcMCP3008::ReadValuePercent(const int asChannel)
 {
 	int lsResult = AnalogRead(asChannel);
 	return (lsResult*100) / 1023;
 }
 
-int tcMCP3008::AnalogRead(const int asChannel)
+int RaspIO::tcMCP3008::AnalogRead(const int asChannel)
 {
 	if (asChannel < 0 || asChannel>7)
 		return -1;
